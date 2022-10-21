@@ -20,3 +20,5 @@
 
 
 # Accessing the AWS Console with Ansible
+![Screenshot_4](https://user-images.githubusercontent.com/106797604/197083882-82669d14-36c1-4b75-89b4-3a479664752e.png)
+
