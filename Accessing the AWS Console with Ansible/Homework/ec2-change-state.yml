@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  vars_files: 
+    - keys.yml
+
+  tasks:
+  - pip:
+      name: boto
+
+  - name: Change instances state by tag
+    ec2:
+      aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
+      aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+      region: "{{ AWS_REGION }}"
+      state: running
+      instance_tags:
+           Name: Linux1    
+
+  - name: Pause for 5 minutes to build app cache
+    ansible.builtin.pause:
+       minutes: 5 
+
+  - name: Change instances state by tag
+    ec2:
+      aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
+      aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+      region: "{{ AWS_REGION }}"
+      state: stopped
+      instance_tags:
+           Name: Linux1
+
+
+
+
+
