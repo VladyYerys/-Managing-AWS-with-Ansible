@@ -106,5 +106,17 @@ env | grep AWS
 ![Screenshot_19](https://user-images.githubusercontent.com/106797604/197241770-d7247867-c4a9-4ddb-a068-e411223ee391.png)
 
 
+### Understanding IAM Permissions with Regard to Ansible
+![Screenshot_20](https://user-images.githubusercontent.com/106797604/197243372-ba6ec844-fd43-461b-9163-93bd10e58c62.png)
+
+### Securing Keys with Ansible Vault
+![Screenshot_21](https://user-images.githubusercontent.com/106797604/197247423-18bd2f2c-438e-420e-8ffb-1c6a08b2d62a.png)
+```
+$ ansible-vault encrypt keys.yml
+```
+![Screenshot_22](https://user-images.githubusercontent.com/106797604/197249344-c2e7a651-e426-420e-a8db-669c491742cf.png)
+
+![Screenshot_23](https://user-images.githubusercontent.com/106797604/197252834-8bf5c02a-68dc-41fe-af82-3109f3caac03.png)
+
 
 
