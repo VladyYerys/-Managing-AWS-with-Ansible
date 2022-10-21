@@ -45,26 +45,66 @@
 
 Create a very simple playbook name is ec2-change-state.yml
 add:
-```
----
-- hosts: all
+ ```
+ ---
+- hosts: localhost
   gather_facts: yes
   vars_files:
     - keys.yml
+
   tasks:
-    - name: Change instances state by tag
-      ec2:
-        aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
-        aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
-        ec2_region: "{{ AWS_REGION }}"
-        state: stopped
-        intance tags:
+  - pip:
+      name: boto
+
+  - name: Change instances state by tag
+    ec2:
+      aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
+      aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+      region: "{{ AWS_REGION }}"
+      state: running
+      instance_tags:
            Name: Linux1
+
 ```
 
 ![Screenshot_13](https://user-images.githubusercontent.com/106797604/197193293-021bf9f6-62d9-4ff6-92bb-7e184596039e.png)
 
 ![Screenshot_14](https://user-images.githubusercontent.com/106797604/197204853-3b0dacb2-f02c-44ba-9f63-12469e482e72.png)
+
+#### Created BASH SCRIPT
+![Screenshot_15](https://user-images.githubusercontent.com/106797604/197208202-2e3184bd-a4f5-48f8-8745-63ab7c052813.png)
+
+
+### Creat ec2-change-state-shell.yml
+
+
+```
+---
+- hosts: localhost
+  gather_facts: yes
+  tasks:
+  - name: Change instances state by tag
+    local_action: ec2
+    args:
+       state: running
+       instance_tags:
+          Name: Linux1
+
+
+```
+
+![Screenshot_16](https://user-images.githubusercontent.com/106797604/197236878-d3853cbc-bc88-41b2-9786-d1704f96621b.png)
+
+
+### If fatal: [localhost]: FAILED! => {"changed": false, "msg": "Either region or ec2_url must be specified"}
+![Screenshot_17](https://user-images.githubusercontent.com/106797604/197240610-a8505cc5-cc66-417c-990a-84892ba29630.png)
+```
+source ./keys.sh
+env | grep AWS
+```
+![Screenshot_18](https://user-images.githubusercontent.com/106797604/197241222-59a14ca9-77c1-479d-bf67-a6cc06a088cd.png)
+![Screenshot_19](https://user-images.githubusercontent.com/106797604/197241770-d7247867-c4a9-4ddb-a068-e411223ee391.png)
+
 
 
 
